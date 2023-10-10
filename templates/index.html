@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Hello</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Monospace font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000; /* Dark background */
+            margin: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 2.8em; /* Larger font size */
+            letter-spacing: 4px; /* Increased letter spacing */
+            line-height: 1.3; /* Adjust line height */
+            color: #0F0; /* Bright green */
+            margin: 20px 0;
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); /* Initial state: Text is fully hidden on the right */
+            white-space: nowrap; /* Ensure text stays on one line */
+            text-shadow: 0px 0px 8px #0F0; /* Neon glow effect */
+        }
+        .typing {
+            animation: slideIn 3s forwards;
+        }
+        @keyframes slideIn {
+            from {
+                clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+            }
+            to {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header1">HELLO ICS 3C! 🚀</h1>
+        <h1 class="header2">{{ target }}</h1>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.querySelector('.header1').classList.add('typing');
+            }, 500); // Half a second delay before the first header starts typing
+
+            setTimeout(function() {
+                document.querySelector('.header2').classList.add('typing');
+            }, 3500); // 3.5 seconds delay (enough for the first header to finish typing)
+        });
+    </script>
+</body>
+</html>
