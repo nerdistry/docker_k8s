@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubernetes Hello</title>
+    <title>HOLA!</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
@@ -16,28 +17,46 @@
             margin: 0;
             overflow: hidden;
         }
+
         h1 {
+            display: none; /* Hide initially */
             font-weight: bold;
             font-size: 2.8em;
             letter-spacing: 4px;
             line-height: 1.3;
             color: #0F0;
             margin: 20px 0;
-            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+            overflow: hidden;
             white-space: nowrap;
             text-shadow: 0px 0px 8px #0F0;
+            width: 0;
         }
-        .typing {
-            animation: slideIn 3s forwards;
+
+        .animate-text {
+            display: block; /* Show when animating */
+            animation: typing 3s forwards;
         }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
         @keyframes slideIn {
             from {
                 clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
             }
+
             to {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             }
         }
+
         /* Styles for the mute button */
         #muteButton {
             position: absolute;
@@ -53,49 +72,53 @@
             font-size: 1.2em;
             color: #000;
         }
+
         #muteButton:focus {
             outline: none;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1 class="header1">HELLO ICS 3C! 🚀</h1>
         <h1 class="header2">{{ target }}</h1>
     </div>
     <audio id="typingSound" src="https://www.fesliyanstudios.com/play-mp3/737" preload="auto" loop></audio>
-    <button id="startButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0F0; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 1.2em; color: #000;">Start</button>
+    <button id="startButton"
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0F0; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 1.2em; color: #000;">
+        Start</button>
     <button id="muteButton">Mute</button>
 
     <script>
-                const typingAudio = document.getElementById('typingSound');
+        const typingAudio = document.getElementById('typingSound');
         const muteButton = document.getElementById('muteButton');
         const startButton = document.getElementById('startButton');
         const header1 = document.querySelector('.header1');
         const header2 = document.querySelector('.header2');
 
-        let animationDuration = 6000; // 3s for each header
-
-        startButton.addEventListener("click", function() {
-            // Start audio and typing animation for header1
+        startButton.addEventListener("click", function () {
+            // Start audio
             typingAudio.play();
-            header1.classList.add('typing');
 
-            setTimeout(function() {
+            // Start typing animation for header1
+            header1.classList.add('animate-text');
+
+            setTimeout(function () {
                 // Start typing animation for header2
-                header2.classList.add('typing');
+                header2.classList.add('animate-text');
             }, 3000);
 
             // Stop audio after total animation duration
-            setTimeout(function() {
+            setTimeout(function () {
                 typingAudio.pause();
-            }, animationDuration);
+            }, 6000); // 3s for each header
 
             // Hide the start button after it's clicked
             startButton.style.display = 'none';
         });
 
-        muteButton.addEventListener('click', function() {
+        muteButton.addEventListener('click', function () {
             if (typingAudio.muted) {
                 typingAudio.muted = false;
                 muteButton.innerText = "Mute";
@@ -106,4 +129,5 @@
         });
     </script>
 </body>
+
 </html>
